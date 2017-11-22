@@ -20,9 +20,7 @@ emailjs.send('default_service', "<YOUR TEMPLATE ID>", {name: "James", notes: "Ch
 });
 */
 
-<script>
 fbq('track', 'ViewContent');
-
 /* 
 fbq('track', 'AddToCart');
 fbq('track', 'CompleteRegistration');
