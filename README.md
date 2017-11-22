@@ -11,4 +11,8 @@ emailjs.send('default_service', "<YOUR TEMPLATE ID>", {name: "James", notes: "Ch
    console.log("FAILED. error=", err);
 });
 */
+
+<script>
+fbq('track', 'ViewContent', {});
+</script>
 </script>
