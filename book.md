@@ -23,6 +23,22 @@
         <p>There are other introductory books about Orthodoxy. This one comprehensively covers the history, theology, and practice without talking over your head. Mathewes- Green takes the original approach of bringing you into a typical church for a series of visits. That is how Christians learned the faith for most of history, by coming into a community and keeping their eyes and ears open. Designed primarily for newcomers to come to understand Orthodoxy and Orthodox Christians, this guide to the faith is also a non-threatening and accessible introduction to people already "in the pews.”</p>
       </a>
     </li>
+    
+    <li>
+      <a href="">
+        <img src="https://images-na.ssl-images-amazon.com/images/I/51pOQLMcNgL.jpg" />
+        <h3>Orthodoxy and Heterodoxy</h3>
+        <p>In Orthodoxy & Heterodoxy, Fr. Andrew Stephen Damick covers the gamut of ancient heresies, modern Christian denominations, fringe groups, and major world religions, highlighting the main points of each faith and how they contrast with Orthodoxy. This book is an invaluable reference for anyone who wants to understand the faiths of those they come in contact with—as well as their own.</p>
+      </a>
+    </li>
+    
+    <li>
+      <a href="">
+        <img src="https://images-na.ssl-images-amazon.com/images/I/51Uf0rI0WgL.jpg" />
+        <h3>An Introduction to God</h3>
+        <p>Speaking to non-believers and believers alike, Fr. Andrew Stephen Damick attempts to create a sacred space in which we can encounter God. In this compact volume, he distills the essence of the traditional Christian faith, addressing the fundamental mysteries of where God is, who God is, why we go to church, and why Christian morality matters. If you’ve only heard about the Protestant or Roman Catholic version of Christianity, what he has to say may surprise you—and make you long to encounter God in Jesus Christ.</p>
+      </a>
+    </li>
    </ul>
 </section>
     
