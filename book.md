@@ -44,16 +44,31 @@
    <div id="sendToForm">
       <p>Now all we need to send <span id="bookName"></span> to you is your address.  We promise, no one will bug you!</p>
 
-      <fieldset>
-         <legend>Name</legend>
+      <div class="formfield">
+         <span>Name:</span>
          <input type="text" id="name" />
-      </fieldset>
+      </div>
+      
+      <div class="formfield">
+         <span>Address:</span>
+         <input type="text" id="address" />
+      </div>
+      
+      <div class="formfield">
+         <span>City:</span>
+         <input type="text" id="city" />
+      </div>
+
+      <div class="formfield">
+         <span>Zip Code:</span>
+         <input type="text" id="zip" />
+      </div>
    </div>
 </section>
     
 <script>
 /*
-emailjs.send('default_service', "<YOUR TEMPLATE ID>", {name: "James", notes: "Check this out!"})
+emailjs.send('default_service', 'template_sq5PhCw0', {name: "James", notes: "Check this out!"})
 .then(function(response) {
    console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
 }, function(err) {
