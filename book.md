@@ -40,6 +40,15 @@
       </a>
     </li>
    </ul>
+   
+   <div id="sendToForm">
+   <p>Now all we need to send <span id="bookName"></span> to you is your address.  We promise, no one will bug you!<p>
+   
+   <fieldset>
+      <legend>Name</legend>
+      <input type="text" id="name" />
+   </fieldset>
+   </div>
 </section>
     
 <script>
@@ -52,7 +61,7 @@ emailjs.send('default_service', "<YOUR TEMPLATE ID>", {name: "James", notes: "Ch
 });
 */
 
-fbq('track', 'ViewContent');
+fbq('track', 'ViewContent', { content_name: 'book picker' });
 /* 
 fbq('track', 'AddToCart');
 fbq('track', 'CompleteRegistration');
@@ -60,5 +69,6 @@ fbq('track', 'CompleteRegistration');
 
 function selectBook(name) {
    console.log(name);
+   fbq('track', 'AddToCart', { content_name: name });
 }
 </script>
