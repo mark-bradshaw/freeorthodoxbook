@@ -1,6 +1,6 @@
 
 <section class="page-header">
-   <h1 class="project-name">Free Orthodox Book</h1>
+<h1 class="project-name"><a href="/">Free Orthodox Book</a></h1>
    <h2 class="project-tagline">Encounter the Ancient Church</h2>
 </section>
 
