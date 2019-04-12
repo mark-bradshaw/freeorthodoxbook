@@ -1,0 +1,124 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="style/normalize.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" /> -->
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+</head>
+
+<body>
+    <div class="header">
+        <div class="header-site-name">Pick a <span class="emphasis">Free Book</span></div>
+
+        <div class="header-title">The <span class="header-title-emphasis">Ancient</span> Way</div>
+        <div class="header-title-subtitle">Discover the Christianity you've been <span class="header-title-subtitle-emphasis">looking</span> for.</div>
+    </div>
+
+    <p class="instructions">We're really glad that you're interested in learning more about Orthodox Christianity.</p>
+
+    <p class="instructions">Choose a book below.  It's <span class="instructions-emphasis">completely free</span>, with <span class="instructions-emphasis">no strings attached</span>.</p>
+
+    <div class="books">
+        <div id="book-1" class="book" onClick="selectBook('1')">
+            <img src="images/book1.jpg" />       
+        </div>
+        <div id="book-2" class="book" onClick="selectBook('2')">
+            <img src="images/book2.jpg" />
+        </div>
+        <!-- <div id="book-3" class="book" onClick="selectBook('3')">
+            <img src="images/book3.jpg" />
+        </div> -->
+        <div id="book-4" class="book" onClick="selectBook('4')">
+            <img src="images/book4.jpg" />
+        </div>
+        <div id="book-5" class="book" onClick="selectBook('5')">
+            <img src="images/book5.jpg" />
+        </div>
+    </div>
+
+    <div id="book-details-1" class="book-details">
+        <div class="book-title">Welcome to the Orthodox Church</div>
+        <div class="book-author">by Frederica Mathewes-Green</div>
+        <p class="book-blurb">Welcome to the Orthodox Church - its history, theology, worship, spirituality, and daily life. This friendly guide provides a comprehensive introduction to Orthodoxy, but with a twist: listeners learn by making a series of visits to a fictitious church, and get to know the faith as new Christians did for most of history, by immersion. Mathews-Green provides commentary and explanations on everything from how to "venerate" an icon, the Orthodox understanding of the atonement, to the Lenten significance of tofu. It's the perfect book for inquirers and newcomers, but even listeners who have been Orthodox all their lives say they learned things they never knew before. Enjoyable, easy-to-listen-to and leavened with humor, Welcome to the Orthodox Church is a gracious guide to the ancient faith of the Christian East.</p>
+    </div>
+
+    <div id="book-details-2" class="book-details">
+        <div class="book-title">Orthodoxy and Heterodoxy</div>
+        <div class="book-author">by Andrew Stephen Damick</div>
+        <p class="book-blurb">Are you an Orthodox Christian who wonders how to explain to your Baptist grandmother, your Buddhist neighbor, or the Jehovah s Witness at your door how your faith differs from theirs? Or are you a member of another faith who is curious what Orthodoxy is all about? Look no further. In Orthodoxy & Heterodoxy, Fr. Andrew Stephen Damick covers the gamut of ancient heresies, modern Christian denominations, fringe groups, and major world religions, highlighting the main points of each faith. This book is an invaluable reference for anyone who wants to understand the faiths of those they come in contact with as well as their own.</p>
+    </div>
+
+    <div id="book-details-3" class="book-details">
+        <div class="book-title">Reclaiming the Atonement</div>
+        <div class="book-author">by Patrick Henry Reardon</div>
+        <p class="book-blurb">Fr. Patrick Reardon presents the first of three volumes exploring redemption and salvation through the lens of Scripture, patristics, and liturgics, as well as through history, philosophy, language, literature, and psychology. He brings all these perspectives together to show how the whole of Christ s work from Incarnation to Ascension accomplishes the at-one-ment of God with man.</p>
+    </div>
+
+    <div id="book-details-4" class="book-details">
+        <div class="book-title">An Introduction to God</div>
+        <div class="book-author">by Andrew Stephen Damick</div>
+        <p class="book-blurb">Speaking to non-believers and believers alike, Fr. Andrew Stephen Damick attempts to create a sacred space in which we can encounter God. In this compact volume, he distills the essence of the traditional Christian faith, addressing the fundamental mysteries of where God is, who God is, why we go to church, and why Christian morality matters. If you’ve only heard about the Protestant or Roman Catholic version of Christianity, what he has to say may surprise you—and make you long to encounter God in Jesus Christ.</p>
+    </div>
+
+    <div id="book-details-5" class="book-details">
+        <div class="book-title">The Orthodox Church</div>
+        <div class="book-author">by Timothy Ware</div>
+        <p class="book-blurb">Since its first publication fifty years ago, Timothy Ware's book has become established throughout the English-speaking world as the standard introduction to the Orthodox Church. Orthodoxy continues to be a subject of enormous interest among western Christians, and the author believes that an understanding of its standpoint is necessary before the Roman Catholic and Protestant Churches can be reunited. In this revised and updated edition he explains the Orthodox views on such widely ranging matters as Ecumenical Councils, Sacraments, Free Will, Purgatory, the Papacy and the relation between the different Orthodox Churches.</p>
+    </div>
+
+    <script>
+        var first = true;
+        function selectBook(bookId) {
+            var selected = document.getElementsByClassName('book-selected');
+            if (selected) {
+                Array.prototype.forEach.call(selected, function(el) {
+                    el.classList.remove('book-selected');
+                });
+            }
+
+            selected = document.getElementsByClassName('book-details-selected');
+            if (selected) {
+                Array.prototype.forEach.call(selected, function(el) {
+                    el.classList.remove('book-details-selected');
+                });
+            }
+
+            var book = document.getElementById('book-' + bookId);
+            book.classList.add('book-selected');
+
+            var bookDetails = document.getElementById('book-details-' + bookId);
+            bookDetails.classList.add('book-details-selected');
+
+            if (first) {
+                first = false;
+                bookDetails.scrollIntoView({ block: 'end',  behavior: 'smooth' });
+            }            
+        }
+    </script>
+
+    <form method="POST" action="https://formspree.io/mark.bradshaw@gmail.com">
+        <input name="email" />
+        <input name="full name" />
+        <input type="submit" />
+    </form>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="slick/slick.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.books').slick({
+                slidesToShow: 4,
+                slidesToScroll: 1
+            });
+        });
+    </script> -->
+</body>
+
+</html>
