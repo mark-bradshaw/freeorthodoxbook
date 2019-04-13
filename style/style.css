@@ -152,6 +152,7 @@ form {
 input, textarea {
     padding: 5px;
     width: 300px;
+    border: 1px solid black;
     border-radius: 3px;
 }
 
@@ -159,18 +160,6 @@ input, button {
     display: block;
     margin: 10px 0;
     border-radius: 3px;
-}
-
-input:valid, textarea:valid {
-    border: 1px solid green;
-}
-
-/* input:invalid, textarea:invalid {
-    border: 1px solid red;
-} */
-
-input[value=""] {
-    border-width: 0;
 }
 
 textarea {
