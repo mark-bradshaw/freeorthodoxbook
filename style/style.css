@@ -63,7 +63,7 @@ html, body {
 .books {
     margin: 20px 5vw;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     position: relative;
     height: 40vw;
     max-height: 360px;
@@ -80,7 +80,7 @@ html, body {
 
 .book img {
     width: 200px;
-    max-width: 20vw;
+    max-width: 17vw;
     transition: all 0.3s ease-in-out;
 }
 
@@ -101,5 +101,62 @@ html, body {
 
 .book-title {
     font-weight: bold;
-    font-size: 150%;
+    font-size: 170%;
+}
+
+.book-blurb {
+    font-family: 'Playfair Display', serif;
+    padding-left: 10px;
+}
+
+form {
+    display: none;
+    font-size: 110%;
+    margin: 30px 5vw;
+    max-width: 600px;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+input, textarea {
+    padding: 5px;
+    width: 300px;
+}
+
+input, button {
+    display: block;
+    margin: 10px 0;
+}
+
+input:valid, textarea:valid {
+    border: 1px solid green;
+}
+
+input:invalid, textarea:invalid {
+    border: 1px solid red;
+}
+
+textarea {
+    height: 100px;
+}
+
+.footer {
+    background-color: rgba(0,0,0,0.1);
+    border-top: 1px solid rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    font-size: 90%;
+    padding: 15px;
+}
+
+.questions, .other {
+    flex: 1;
+    max-width: 300px;
+    margin: 0;
+}
+
+.other ul {
+    list-style: none;
+    padding: 0;
 }
