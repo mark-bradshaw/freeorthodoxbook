@@ -178,6 +178,8 @@
 
             document.forms.contactInfo.style.display = 'block';
             document.forms.contactInfo.book.value = bookId;
+
+            fbq('track', 'AddToCart', { contents: [ { id: bookId } ] });
         }
 
         function checkForm() {
