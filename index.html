@@ -7,8 +7,7 @@
     <link rel="stylesheet" type="text/css" href="style/normalize.css" />
     <link rel="stylesheet" type="text/css" href="style/style.css" />
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu+Condensed" rel="stylesheet">
 </head>
 
 <body>
@@ -16,7 +15,7 @@
         <div class="header-site-name">Pick a <span class="emphasis">Free Book</span></div>
 
         <div class="header-title">The <span class="header-title-emphasis">Ancient</span> Way</div>
-        <div class="header-title-subtitle">Discover the Christianity you've been <span class="header-title-subtitle-emphasis">looking</span> for.</div>
+        <div class="header-title-subtitle">Experience a <span class="header-title-subtitle-emphasis">different</span> sort of Christianity.</div>
     </div>
 
     <p class="instructions">We're really glad that you're interested in learning more about Orthodox Christianity.</p>
@@ -24,19 +23,19 @@
     <p class="instructions">Choose a book below.  It's <span class="instructions-emphasis">completely free</span>, with <span class="instructions-emphasis">no strings attached</span>.</p>
 
     <div class="books">
-        <div id="book-1" class="book" onClick="selectBook('1')">
+        <div id="book-1" class="book wiggle" onClick="selectBook('1')">
             <img src="images/book1.jpg" />       
         </div>
-        <div id="book-2" class="book" onClick="selectBook('2')">
+        <div id="book-2" class="book wiggle2" onClick="selectBook('2')">
             <img src="images/book2.jpg" />
         </div>
         <!-- <div id="book-3" class="book" onClick="selectBook('3')">
             <img src="images/book3.jpg" />
         </div> -->
-        <div id="book-4" class="book" onClick="selectBook('4')">
+        <div id="book-4" class="book wiggle" onClick="selectBook('4')">
             <img src="images/book4.jpg" />
         </div>
-        <div id="book-5" class="book" onClick="selectBook('5')">
+        <div id="book-5" class="book wiggle2" onClick="selectBook('5')">
             <img src="images/book5.jpg" />
         </div>
     </div>
@@ -102,24 +101,39 @@
     <script>
         var firstSelection = true;
         function selectBook(bookId) {
-            var selected = document.getElementsByClassName('book-selected');
+            var i, wiggling, selected, book, bookDetails;
+
+            wiggling = document.getElementsByClassName('wiggle');
+            if (wiggling) {
+                for (i = wiggling.length - 1; i >= 0; --i) {
+                    wiggling.item(i).classList.remove('wiggle');
+                }
+            }
+            wiggling = document.getElementsByClassName('wiggle2');
+            if (wiggling) {
+                for (i = wiggling.length - 1; i >= 0; --i) {
+                    wiggling.item(i).classList.remove('wiggle2');
+                }
+            }
+
+            selected = document.getElementsByClassName('book-selected');
             if (selected) {
-                Array.prototype.forEach.call(selected, function(el) {
-                    el.classList.remove('book-selected');
-                });
+                for (i = selected.length - 1; i >= 0; --i) {
+                    selected.item(i).classList.remove('book-selected');
+                }
             }
 
             selected = document.getElementsByClassName('book-details-selected');
             if (selected) {
-                Array.prototype.forEach.call(selected, function(el) {
-                    el.classList.remove('book-details-selected');
-                });
+                for (i = selected.length - 1; i >= 0; --i) {
+                    selected.item(i).classList.remove('book-details-selected');
+                }
             }
 
-            var book = document.getElementById('book-' + bookId);
+            book = document.getElementById('book-' + bookId);
             book.classList.add('book-selected');
 
-            var bookDetails = document.getElementById('book-details-' + bookId);
+            bookDetails = document.getElementById('book-details-' + bookId);
             bookDetails.classList.add('book-details-selected');
 
             if (firstSelection) {
