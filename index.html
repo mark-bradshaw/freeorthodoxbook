@@ -3,20 +3,18 @@
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110080214-1"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-    gtag('config', 'UA-110080214-1');
+        gtag('config', 'UA-110080214-1');
     </script>
 
     <title>Free Orthodox Book</title>
-
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
 
     <link rel="stylesheet" type="text/css" href="style/style.css" />
-
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu+Condensed" rel="stylesheet">
 
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
@@ -60,13 +58,19 @@
         <div id="book-details"></div>
         
         <form name="contactInfo" method="POST" action="https://formspree.io/" onsubmit="checkForm()">
-            <p>Happy with your choice?  Just provide us with contact info and we'll get your book in the mail to you.</p>
+            <p><span class="contact-info-emphasis">Happy with your choice?</span>  Just provide us with contact info and we'll get your book out to you.</p>
 
-            <input name="email" type="email" placeholder="Email (optional)" />
+            <p id="form-kindle-only">That book is only available in kindle form.  We'll need your email to proceed.</p>
+
+            <p id="form-paper-only">That book is only available in paperback form.  We'll need your mailing address to proceed.</p>
+
+            <p id="form-choose-type">Would you like that as a <input type="radio" name="book-type" value="kindle" checked onClick="selectBookType('kindle')" />kindle e-book or <input type="radio" name="book-type" value="paper" onClick="selectBookType('paper')" />paper back?</p>
 
             <input name="full-name" placeholder="Full name" required />
 
-            <textarea name="mailing-address" placeholder="Mailing address" required></textarea>
+            <input id="contact-email" name="email" type="email" placeholder="Email (required for e-book)" required />
+
+            <textarea id="contact-address" name="mailing-address" placeholder="Mailing address" required></textarea>
 
             <input type="hidden" name="book" />
         
@@ -90,36 +94,42 @@
 
 <script>
     var firstSelection = true;
+    var bookType = 'kindle';
     var books = {
                 'the-orthodox-church': {
                     title: 'The Orthodox Church',
                     author: 'Timothy Ware',
                     image: 'the-orthodox-church.jpg',
-                    blurb: 'Since its first publication fifty years ago, Timothy Ware\'s book has become established throughout the English-speaking world as the standard introduction to the Orthodox Church. Orthodoxy continues to be a subject of enormous interest among western Christians, and the author believes that an understanding of its standpoint is necessary before the Roman Catholic and Protestant Churches can be reunited. In this revised and updated edition he explains the Orthodox views on such widely ranging matters as Ecumenical Councils, Sacraments, Free Will, Purgatory, the Papacy and the relation between the different Orthodox Churches.'
+                    blurb: 'Since its first publication fifty years ago, Timothy Ware\'s book has become established throughout the English-speaking world as the standard introduction to the Orthodox Church. Orthodoxy continues to be a subject of enormous interest among western Christians, and the author believes that an understanding of its standpoint is necessary before the Roman Catholic and Protestant Churches can be reunited. In this revised and updated edition he explains the Orthodox views on such widely ranging matters as Ecumenical Councils, Sacraments, Free Will, Purgatory, the Papacy and the relation between the different Orthodox Churches.',
+                    versions: ['paper']
                 },
                 'welcome-to-the-orthodox-church': {
                     title: 'Welcome to the Orthodox Church',
                     author: 'Frederica Mathewes-Green',
                     image: 'welcome-to-orthodox-church.jpg',
-                    blurb: 'Welcome to the Orthodox Church - its history, theology, worship, spirituality, and daily life. This friendly guide provides a comprehensive introduction to Orthodoxy, but with a twist: listeners learn by making a series of visits to a fictitious church, and get to know the faith as new Christians did for most of history, by immersion. Mathews-Green provides commentary and explanations on everything from how to "venerate" an icon, the Orthodox understanding of the atonement, to the Lenten significance of tofu. It\'s the perfect book for inquirers and newcomers, but even listeners who have been Orthodox all their lives say they learned things they never knew before. Enjoyable, easy-to-listen-to and leavened with humor, Welcome to the Orthodox Church is a gracious guide to the ancient faith of the Christian East.'
+                    blurb: 'Welcome to the Orthodox Church - its history, theology, worship, spirituality, and daily life. This friendly guide provides a comprehensive introduction to Orthodoxy, but with a twist: listeners learn by making a series of visits to a fictitious church, and get to know the faith as new Christians did for most of history, by immersion. Mathews-Green provides commentary and explanations on everything from how to "venerate" an icon, the Orthodox understanding of the atonement, to the Lenten significance of tofu. It\'s the perfect book for inquirers and newcomers, but even listeners who have been Orthodox all their lives say they learned things they never knew before. Enjoyable, easy-to-listen-to and leavened with humor, Welcome to the Orthodox Church is a gracious guide to the ancient faith of the Christian East.',
+                    versions: ['kindle', 'paper']
                 },
                 'orthodoxy-and-heterodoxy': {
                     title: 'Orthodoxy and Heterodoxy',
                     author: 'Andrew Stephen Damick',
                     image: 'orthodoxy-and-heterodoxy.jpg',
-                    blurb: 'Are you a member of another faith who is curious what Orthodoxy is all about? Look no further. In Orthodoxy & Heterodoxy, Fr. Andrew Stephen Damick covers the gamut of ancient heresies, modern Christian denominations, fringe groups, and major world religions, highlighting the main points of each faith. This book is an invaluable reference for anyone who wants to understand the faiths of those they come in contact with as well as their own.'
+                    blurb: 'Are you a member of another faith who is curious what Orthodoxy is all about? Look no further. In Orthodoxy & Heterodoxy, Fr. Andrew Stephen Damick covers the gamut of ancient heresies, modern Christian denominations, fringe groups, and major world religions, highlighting the main points of each faith. This book is an invaluable reference for anyone who wants to understand the faiths of those they come in contact with as well as their own.',
+                    versions: ['kindle']
                 },
                 'an-introduction-to-god': {
                     title: 'An Introduction to God',
                     author: 'Andrew Stephen Damick',
                     image: 'an-introduction-to-god.jpg',
-                    blurb: 'Speaking to non-believers and believers alike, Fr. Andrew Stephen Damick attempts to create a sacred space in which we can encounter God. In this compact volume, he distills the essence of the traditional Christian faith, addressing the fundamental mysteries of where God is, who God is, why we go to church, and why Christian morality matters. If you’ve only heard about the Protestant or Roman Catholic version of Christianity, what he has to say may surprise you—and make you long to encounter God in Jesus Christ.'
+                    blurb: 'Speaking to non-believers and believers alike, Fr. Andrew Stephen Damick attempts to create a sacred space in which we can encounter God. In this compact volume, he distills the essence of the traditional Christian faith, addressing the fundamental mysteries of where God is, who God is, why we go to church, and why Christian morality matters. If you’ve only heard about the Protestant or Roman Catholic version of Christianity, what he has to say may surprise you—and make you long to encounter God in Jesus Christ.',
+                    versions: ['kindle', 'paper']
                 },
                 'thirsting-for-god': {
                     title: 'Thirsting For God',
                     author: 'Matthew Gallatin',
                     image: 'thirsting-for-god.jpg',
-                    blurb: 'Beginning in the street ministry days of the Jesus Movement, Matthew Gallatin devoted more than 20 years to evangelical Christian ministry. He was a singer/songwriter, worship leader, youth leader, and Calvary Chapel pastor. Nevertheless, he eventually accepted a painful reality: no matter how hard he tried, he was never able to experience the God whom he longed to know. In encountering Orthodox Christianity, he finally found the fullness of the Faith. In Thirsting for God, philosophy professor Gallatin expresses many of the struggles that a Protestant will encounter in coming face to face with Orthodoxy: such things as Protestant relativism, rationalism versus the Orthodox sacramental path to God, and the unity of Scripture and Tradition. He also discusses praying with icons, praying formal prayers, and many other Orthodox traditions.An outstanding book that will help Orthodox readers more deeply appreciate their faith and will give Protestant readers a more thorough understanding of the Church.'
+                    blurb: 'Beginning in the street ministry days of the Jesus Movement, Matthew Gallatin devoted more than 20 years to evangelical Christian ministry. He was a singer/songwriter, worship leader, youth leader, and Calvary Chapel pastor. Nevertheless, he eventually accepted a painful reality: no matter how hard he tried, he was never able to experience the God whom he longed to know. In encountering Orthodox Christianity, he finally found the fullness of the Faith. In Thirsting for God, philosophy professor Gallatin expresses many of the struggles that a Protestant will encounter in coming face to face with Orthodoxy: such things as Protestant relativism, rationalism versus the Orthodox sacramental path to God, and the unity of Scripture and Tradition. He also discusses praying with icons, praying formal prayers, and many other Orthodox traditions.An outstanding book that will help Orthodox readers more deeply appreciate their faith and will give Protestant readers a more thorough understanding of the Church.',
+                    versions: ['kindle', 'paper']
                 }
     };
     var bookSet = 'annunciationDecaturIL';
@@ -194,11 +204,62 @@
             bookDetailsEl.scrollIntoView({ block: 'end',  behavior: 'smooth' });
         }
 
+        // show the appropriate book type instructions
+        var kindleOnlySelectorEl = document.getElementById('form-kindle-only');
+        var paperOnlySelectorEl = document.getElementById('form-paper-only');
+        var kindleAndPaperSelectorEl = document.getElementById('form-choose-type');
+        var emailField = document.getElementById('contact-email');
+        var addressField = document.getElementById('contact-address');
+
+        kindleOnlySelectorEl.classList.add('hide');
+        paperOnlySelectorEl.classList.add('hide');
+        kindleAndPaperSelectorEl.classList.add('hide');
+        // Available in both kindle and paper
+        if (book.versions.indexOf('kindle') !== -1 && book.versions.indexOf('paper') !== -1) {
+            kindleAndPaperSelectorEl.classList.remove('hide');
+            selectBookType(bookType);
+        } 
+        // kindle only
+        else if (book.versions.indexOf('kindle') !== -1) {
+            kindleOnlySelectorEl.classList.remove('hide');
+            emailField.classList.remove('hide');
+            emailField.required = true;
+            addressField.classList.add('hide');
+            addressField.required = false;
+        } 
+        // paper only
+        else  {
+            paperOnlySelectorEl.classList.remove('hide');
+            emailField.classList.add('hide');
+            emailField.required = false;
+            addressField.classList.remove('hide');
+            addressField.required = true;
+        }
+
         // Show the contact form.
         document.forms.contactInfo.style.display = 'block';
         document.forms.contactInfo.book.value = book.title;
 
         fbq('track', 'AddToCart', { contents: [ { id: bookId } ] });
+    }
+
+    function selectBookType(type) {
+        bookType = type;
+
+        var emailField = document.getElementById('contact-email');
+        var addressField = document.getElementById('contact-address');
+
+        if (type === 'kindle') {
+            emailField.classList.remove('hide');
+            emailField.required = true;
+            addressField.classList.add('hide');
+            addressField.required = false;
+        } else {
+            emailField.classList.add('hide');
+            emailField.required = false;
+            addressField.classList.remove('hide');
+            addressField.required = true;
+        }
     }
 
     function checkForm() {

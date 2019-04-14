@@ -17,6 +17,10 @@ a:visited {
     color: blue;
 }
 
+.hide {
+    display: none;
+}
+
 .header {
     background-color: black;
     background-image: url(../images/background.png);
@@ -149,6 +153,16 @@ form {
     max-width: 600px;
     background-color: rgba(0, 0, 0, 0.1);
     padding: 10px;
+}
+
+.contact-info-emphasis {
+    color: orange;
+}
+
+input[type="radio"] {
+    display: inline;
+    margin: 0 5px;
+    width: initial;
 }
 
 input, textarea {
