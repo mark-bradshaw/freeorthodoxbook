@@ -15,7 +15,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
 
-    <link rel="stylesheet" type="text/css" href="style/normalize.css" />
     <link rel="stylesheet" type="text/css" href="style/style.css" />
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu+Condensed" rel="stylesheet">
@@ -57,55 +56,10 @@
 
         <p class="instructions">Choose a book below.  It's <span class="instructions-emphasis">completely free</span>, with <span class="instructions-emphasis">no strings attached</span>.</p>
 
-        <div class="books">
-            <div id="book-1" class="book wiggle" onClick="selectBook('1')">
-                <img src="images/book1.jpg" />       
-            </div>
-            <div id="book-2" class="book wiggle2" onClick="selectBook('2')">
-                <img src="images/book2.jpg" />
-            </div>
-            <!-- <div id="book-3" class="book" onClick="selectBook('3')">
-                <img src="images/book3.jpg" />
-            </div> -->
-            <div id="book-4" class="book wiggle" onClick="selectBook('4')">
-                <img src="images/book4.jpg" />
-            </div>
-            <div id="book-5" class="book wiggle2" onClick="selectBook('5')">
-                <img src="images/book5.jpg" />
-            </div>
-        </div>
-
-        <div id="book-details-1" class="book-details">
-            <div class="book-title">Welcome to the Orthodox Church</div>
-            <div class="book-author">by Frederica Mathewes-Green</div>
-            <p class="book-blurb">Welcome to the Orthodox Church - its history, theology, worship, spirituality, and daily life. This friendly guide provides a comprehensive introduction to Orthodoxy, but with a twist: listeners learn by making a series of visits to a fictitious church, and get to know the faith as new Christians did for most of history, by immersion. Mathews-Green provides commentary and explanations on everything from how to "venerate" an icon, the Orthodox understanding of the atonement, to the Lenten significance of tofu. It's the perfect book for inquirers and newcomers, but even listeners who have been Orthodox all their lives say they learned things they never knew before. Enjoyable, easy-to-listen-to and leavened with humor, Welcome to the Orthodox Church is a gracious guide to the ancient faith of the Christian East.</p>
-        </div>
-
-        <div id="book-details-2" class="book-details">
-            <div class="book-title">Orthodoxy and Heterodoxy</div>
-            <div class="book-author">by Andrew Stephen Damick</div>
-            <p class="book-blurb">Are you a member of another faith who is curious what Orthodoxy is all about? Look no further. In Orthodoxy & Heterodoxy, Fr. Andrew Stephen Damick covers the gamut of ancient heresies, modern Christian denominations, fringe groups, and major world religions, highlighting the main points of each faith. This book is an invaluable reference for anyone who wants to understand the faiths of those they come in contact with as well as their own.</p>
-        </div>
-
-        <div id="book-details-3" class="book-details">
-            <div class="book-title">Reclaiming the Atonement</div>
-            <div class="book-author">by Patrick Henry Reardon</div>
-            <p class="book-blurb">Fr. Patrick Reardon presents the first of three volumes exploring redemption and salvation through the lens of Scripture, patristics, and liturgics, as well as through history, philosophy, language, literature, and psychology. He brings all these perspectives together to show how the whole of Christ s work from Incarnation to Ascension accomplishes the at-one-ment of God with man.</p>
-        </div>
-
-        <div id="book-details-4" class="book-details">
-            <div class="book-title">An Introduction to God</div>
-            <div class="book-author">by Andrew Stephen Damick</div>
-            <p class="book-blurb">Speaking to non-believers and believers alike, Fr. Andrew Stephen Damick attempts to create a sacred space in which we can encounter God. In this compact volume, he distills the essence of the traditional Christian faith, addressing the fundamental mysteries of where God is, who God is, why we go to church, and why Christian morality matters. If you’ve only heard about the Protestant or Roman Catholic version of Christianity, what he has to say may surprise you—and make you long to encounter God in Jesus Christ.</p>
-        </div>
-
-        <div id="book-details-5" class="book-details">
-            <div class="book-title">The Orthodox Church</div>
-            <div class="book-author">by Timothy Ware</div>
-            <p class="book-blurb">Since its first publication fifty years ago, Timothy Ware's book has become established throughout the English-speaking world as the standard introduction to the Orthodox Church. Orthodoxy continues to be a subject of enormous interest among western Christians, and the author believes that an understanding of its standpoint is necessary before the Roman Catholic and Protestant Churches can be reunited. In this revised and updated edition he explains the Orthodox views on such widely ranging matters as Ecumenical Councils, Sacraments, Free Will, Purgatory, the Papacy and the relation between the different Orthodox Churches.</p>
-        </div>
-
-        <form name="contactInfo" method="POST" action="https://formspree.io/freeorthodoxbook@gmail.com" onsubmit="checkForm()">
+        <div id="books"></div>
+        <div id="book-details"></div>
+        
+        <form name="contactInfo" method="POST" action="https://formspree.io/" onsubmit="checkForm()">
             <p>Happy with your choice?  Just provide us with contact info and we'll get your book in the mail to you.</p>
 
             <input name="email" type="email" placeholder="Email (optional)" />
@@ -132,61 +86,128 @@
             </ul>
         </div>
     </div>
-
-    <script>
-        var firstSelection = true;
-        function selectBook(bookId) {
-            var i, wiggling, selected, book, bookDetails;
-
-            wiggling = document.getElementsByClassName('wiggle');
-            if (wiggling) {
-                for (i = wiggling.length - 1; i >= 0; --i) {
-                    wiggling.item(i).classList.remove('wiggle');
-                }
-            }
-            wiggling = document.getElementsByClassName('wiggle2');
-            if (wiggling) {
-                for (i = wiggling.length - 1; i >= 0; --i) {
-                    wiggling.item(i).classList.remove('wiggle2');
-                }
-            }
-
-            selected = document.getElementsByClassName('book-selected');
-            if (selected) {
-                for (i = selected.length - 1; i >= 0; --i) {
-                    selected.item(i).classList.remove('book-selected');
-                }
-            }
-
-            selected = document.getElementsByClassName('book-details-selected');
-            if (selected) {
-                for (i = selected.length - 1; i >= 0; --i) {
-                    selected.item(i).classList.remove('book-details-selected');
-                }
-            }
-
-            book = document.getElementById('book-' + bookId);
-            book.classList.add('book-selected');
-
-            bookDetails = document.getElementById('book-details-' + bookId);
-            bookDetails.classList.add('book-details-selected');
-
-            if (firstSelection) {
-                firstSelection = false;
-                bookDetails.scrollIntoView({ block: 'end',  behavior: 'smooth' });
-            }
-
-            document.forms.contactInfo.style.display = 'block';
-            document.forms.contactInfo.book.value = bookId;
-
-            fbq('track', 'AddToCart', { contents: [ { id: bookId } ] });
-        }
-
-        function checkForm() {
-            fbq('track', 'Purchase');
-            return document.forms.contactInfo.checkValidity();
-        }
-    </script>
 </body>
+
+<script>
+    var firstSelection = true;
+    var books = {
+                'the-orthodox-church': {
+                    title: 'The Orthodox Church',
+                    author: 'Timothy Ware',
+                    image: 'the-orthodox-church.jpg',
+                    blurb: 'Since its first publication fifty years ago, Timothy Ware\'s book has become established throughout the English-speaking world as the standard introduction to the Orthodox Church. Orthodoxy continues to be a subject of enormous interest among western Christians, and the author believes that an understanding of its standpoint is necessary before the Roman Catholic and Protestant Churches can be reunited. In this revised and updated edition he explains the Orthodox views on such widely ranging matters as Ecumenical Councils, Sacraments, Free Will, Purgatory, the Papacy and the relation between the different Orthodox Churches.'
+                },
+                'welcome-to-the-orthodox-church': {
+                    title: 'Welcome to the Orthodox Church',
+                    author: 'Frederica Mathewes-Green',
+                    image: 'welcome-to-orthodox-church.jpg',
+                    blurb: 'Welcome to the Orthodox Church - its history, theology, worship, spirituality, and daily life. This friendly guide provides a comprehensive introduction to Orthodoxy, but with a twist: listeners learn by making a series of visits to a fictitious church, and get to know the faith as new Christians did for most of history, by immersion. Mathews-Green provides commentary and explanations on everything from how to "venerate" an icon, the Orthodox understanding of the atonement, to the Lenten significance of tofu. It\'s the perfect book for inquirers and newcomers, but even listeners who have been Orthodox all their lives say they learned things they never knew before. Enjoyable, easy-to-listen-to and leavened with humor, Welcome to the Orthodox Church is a gracious guide to the ancient faith of the Christian East.'
+                },
+                'orthodoxy-and-heterodoxy': {
+                    title: 'Orthodoxy and Heterodoxy',
+                    author: 'Andrew Stephen Damick',
+                    image: 'orthodoxy-and-heterodoxy.jpg',
+                    blurb: 'Are you a member of another faith who is curious what Orthodoxy is all about? Look no further. In Orthodoxy & Heterodoxy, Fr. Andrew Stephen Damick covers the gamut of ancient heresies, modern Christian denominations, fringe groups, and major world religions, highlighting the main points of each faith. This book is an invaluable reference for anyone who wants to understand the faiths of those they come in contact with as well as their own.'
+                },
+                'an-introduction-to-god': {
+                    title: 'An Introduction to God',
+                    author: 'Andrew Stephen Damick',
+                    image: 'an-introduction-to-god.jpg',
+                    blurb: 'Speaking to non-believers and believers alike, Fr. Andrew Stephen Damick attempts to create a sacred space in which we can encounter God. In this compact volume, he distills the essence of the traditional Christian faith, addressing the fundamental mysteries of where God is, who God is, why we go to church, and why Christian morality matters. If you’ve only heard about the Protestant or Roman Catholic version of Christianity, what he has to say may surprise you—and make you long to encounter God in Jesus Christ.'
+                },
+                'thirsting-for-god': {
+                    title: 'Thirsting For God',
+                    author: 'Matthew Gallatin',
+                    image: 'thirsting-for-god.jpg',
+                    blurb: 'Beginning in the street ministry days of the Jesus Movement, Matthew Gallatin devoted more than 20 years to evangelical Christian ministry. He was a singer/songwriter, worship leader, youth leader, and Calvary Chapel pastor. Nevertheless, he eventually accepted a painful reality: no matter how hard he tried, he was never able to experience the God whom he longed to know. In encountering Orthodox Christianity, he finally found the fullness of the Faith. In Thirsting for God, philosophy professor Gallatin expresses many of the struggles that a Protestant will encounter in coming face to face with Orthodoxy: such things as Protestant relativism, rationalism versus the Orthodox sacramental path to God, and the unity of Scripture and Tradition. He also discusses praying with icons, praying formal prayers, and many other Orthodox traditions.An outstanding book that will help Orthodox readers more deeply appreciate their faith and will give Protestant readers a more thorough understanding of the Church.'
+                }
+    };
+    var bookSet = 'annunciationDecaturIL';
+    var bookSets = {
+        'annunciationDecaturIL': {
+            email: 'freeorthodoxbook@gmail.com',
+            books: ['the-orthodox-church', 'welcome-to-the-orthodox-church', 'an-introduction-to-god', 'thirsting-for-god']
+        }
+    };
+
+    function setupBooks() {
+        var parent = document.getElementById('books');
+        var booksHtml = bookSets[bookSet].books.reduce(function(prev, bookId, i) {
+            var book = books[bookId];
+            prev += '<div id="book-' + i + '" class="book wiggle';
+            prev += i % 2 === 0 ? '' : '2';
+            prev += '" onClick="selectBook(' + i + ', \'' + bookId + '\')">' +
+                '<img src="images/books/'+ book.image + '" />' +     
+                '</div>';
+            return prev;
+        }, '');
+        parent.innerHTML = booksHtml;
+
+        document.forms.contactInfo.action += bookSets[bookSet].email;
+    }
+
+    function turnOffWiggle() {
+        var i, wiggling;
+
+        wiggling = document.getElementsByClassName('wiggle');
+        if (wiggling) {
+            for (i = wiggling.length - 1; i >= 0; --i) {
+                wiggling.item(i).classList.remove('wiggle');
+            }
+        }
+        wiggling = document.getElementsByClassName('wiggle2');
+        if (wiggling) {
+            for (i = wiggling.length - 1; i >= 0; --i) {
+                wiggling.item(i).classList.remove('wiggle2');
+            }
+        }
+    }
+    
+    function selectBook(index, bookId) {
+        var i, selected, book, bookDetails;
+
+        turnOffWiggle()
+
+        // Deselect anything that's current selected.
+        selected = document.getElementsByClassName('book-selected');
+        if (selected) {
+            for (i = selected.length - 1; i >= 0; --i) {
+                selected.item(i).classList.remove('book-selected');
+            }
+        }
+
+        // Select the clicked book.
+        book = document.getElementById('book-' + index);
+        book.classList.add('book-selected');
+
+        // Fill in the book details
+        var book = books[bookId];
+        var bookDetailsEl = document.getElementById('book-details');
+        var details = '<div class="book-title">' + book.title + '</div>' +
+            '<div class="book-author">by ' + book.author + '</div>' +
+            '<p class="book-blurb">' + book.blurb + '</p>';
+            bookDetailsEl.innerHTML = details;
+
+        // If this is the first book selection, smoothly scroll down to the details section.
+        if (firstSelection) {
+            firstSelection = false;
+            bookDetailsEl.scrollIntoView({ block: 'end',  behavior: 'smooth' });
+        }
+
+        // Show the contact form.
+        document.forms.contactInfo.style.display = 'block';
+        document.forms.contactInfo.book.value = book.title;
+
+        fbq('track', 'AddToCart', { contents: [ { id: bookId } ] });
+    }
+
+    function checkForm() {
+        fbq('track', 'Purchase');
+        return document.forms.contactInfo.checkValidity();
+    }
+
+    // Set everything in motion
+    setupBooks();
+</script>
 
 </html>
