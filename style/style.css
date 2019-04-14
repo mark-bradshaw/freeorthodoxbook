@@ -13,6 +13,10 @@ html, body {
     flex-direction: column;
 }
 
+a:visited {
+    color: blue;
+}
+
 .header {
     background-color: black;
     background-image: url(../images/background.png);
