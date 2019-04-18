@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: freeorthodoxbook.com 
+Token: a68da86aa5ffa3f4549ea27d1fb432f7815140f21c1f1c16034a662d1697f700
