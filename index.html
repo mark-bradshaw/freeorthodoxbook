@@ -56,7 +56,7 @@
 
         <div id="books"></div>
         <div id="book-details"></div>
-        
+
         <form name="contactInfo" method="POST" action="https://formspree.io/" onsubmit="checkForm()">
             <p><span class="contact-info-emphasis">Happy with your choice?</span>  Just provide us with contact info and we'll get your book out to you.</p>
 
@@ -73,9 +73,13 @@
             <textarea id="contact-address" name="mailing-address" placeholder="Mailing address" required></textarea>
 
             <input type="hidden" name="book" />
-        
+
             <button>Send the book</button>
         </form>
+    </div>
+    <div class="welcome-back">
+        <p>Welcome back.  It looks like you've already chosen the book <span id="chosen-book-title" class="emphasis"></span>.</p>
+        <p>We'll have that on the way as soon as we can.</p>
     </div>
     <div class="footer">
         <p class="questions">
@@ -141,13 +145,20 @@
     };
 
     function setupBooks() {
+        if (localStorage && localStorage.getItem('chosen-book')) {
+            document.getElementsByClassName('welcome-back')[0].style.display = 'flex';
+            document.getElementsByClassName('content')[0].style.display = 'none';
+            document.getElementById('chosen-book-title').innerText = localStorage.getItem('chosen-book');
+            return;
+        }
+
         var parent = document.getElementById('books');
         var booksHtml = bookSets[bookSet].books.reduce(function(prev, bookId, i) {
             var book = books[bookId];
             prev += '<div id="book-' + i + '" class="book wiggle';
             prev += i % 2 === 0 ? '' : '2';
             prev += '" onClick="selectBook(' + i + ', \'' + bookId + '\')">' +
-                '<img src="images/books/'+ book.image + '" />' +     
+                '<img src="images/books/'+ book.image + '" />' +
                 '</div>';
             return prev;
         }, '');
@@ -172,7 +183,7 @@
             }
         }
     }
-    
+
     function selectBook(index, bookId) {
         var i, selected, book, bookDetails;
 
@@ -218,7 +229,7 @@
         if (book.versions.indexOf('kindle') !== -1 && book.versions.indexOf('paper') !== -1) {
             kindleAndPaperSelectorEl.classList.remove('hide');
             selectBookType(bookType);
-        } 
+        }
         // kindle only
         else if (book.versions.indexOf('kindle') !== -1) {
             kindleOnlySelectorEl.classList.remove('hide');
@@ -226,7 +237,7 @@
             emailField.required = true;
             addressField.classList.add('hide');
             addressField.required = false;
-        } 
+        }
         // paper only
         else  {
             paperOnlySelectorEl.classList.remove('hide');
@@ -264,7 +275,17 @@
 
     function checkForm() {
         fbq('track', 'Purchase');
-        return document.forms.contactInfo.checkValidity();
+        var valid = document.forms.contactInfo.checkValidity();
+
+        console.log('valid', valid);
+        if (valid && localStorage) {
+            console.log('setting');
+            console.log(document.forms.contactInfo.book.value)
+            localStorage.setItem('chosen-book', document.forms.contactInfo.book.value);
+        }
+        return false;
+
+        return valid;
     }
 
     // Set everything in motion
