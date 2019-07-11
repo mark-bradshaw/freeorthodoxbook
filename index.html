@@ -50,7 +50,7 @@
         <div class="header-title-subtitle">Experience a <span class="header-title-subtitle-emphasis">different</span> sort of Christianity.</div>
     </div>
     <div class="content">
-        <p class="instructions">We're really glad that you're interested in learning more about Orthodox Christianity.</p>
+        <p class="instructions">We're really glad that you're interested in learning more about Orthodox Christianity.  We're offering a free book to folks in the <span id="area" class="instructions-emphasis"></span> area.  If you are outside that area we may not be able to send you a book, but we'd encourage you to look for a local Orthodox parish and get in touch.</p>
 
         <p class="instructions">Choose a book below.  It's <span class="instructions-emphasis">completely free</span>, with <span class="instructions-emphasis">no strings attached</span>.</p>
 
@@ -140,6 +140,7 @@
     var bookSets = {
         'annunciationDecaturIL': {
             email: 'freeorthodoxbook@gmail.com',
+            area: 'Decatur, IL',
             books: ['the-orthodox-church', 'welcome-to-the-orthodox-church', 'an-introduction-to-god', 'thirsting-for-god']
         }
     };
@@ -152,8 +153,12 @@
             return;
         }
 
+        var myBookSet = bookSets[bookSet];
+        var area = document.getElementById('area');
+        area.innerHTML = myBookSet.area;
+
         var parent = document.getElementById('books');
-        var booksHtml = bookSets[bookSet].books.reduce(function(prev, bookId, i) {
+        var booksHtml = myBookSet.books.reduce(function(prev, bookId, i) {
             var book = books[bookId];
             prev += '<div id="book-' + i + '" class="book wiggle';
             prev += i % 2 === 0 ? '' : '2';
