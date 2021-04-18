@@ -243,7 +243,10 @@
     }
 
     function checkForm() {
-        fbq('track', 'Purchase');
+        fbq('track', 'Purchase', {
+            value: 0.00,
+            currency: 'USD'
+        });
         var valid = document.forms.contactInfo.checkValidity();
 
         console.log('valid', valid);
