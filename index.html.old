@@ -60,7 +60,15 @@
         <form name="contactInfo" method="POST" action="https://formspree.io/" onsubmit="checkForm()">
             <p><span class="contact-info-emphasis">Happy with your choice?</span>  Just provide us with contact info and we'll get your book out to you.</p>
 
+            <p id="form-kindle-only">That book is only available in kindle form.  We'll need your email to proceed.</p>
+
+            <p id="form-paper-only">That book is only available in paperback form.  We'll need your mailing address to proceed.</p>
+
+            <p id="form-choose-type">Would you like that as a <input type="radio" name="book-type" value="kindle" checked onClick="selectBookType('kindle')" />kindle e-book or <input type="radio" name="book-type" value="paper" onClick="selectBookType('paper')" />paper back?</p>
+
             <input name="full-name" placeholder="Full name" required />
+
+            <input id="contact-email" name="email" type="email" placeholder="Email (required for e-book)" required />
 
             <textarea id="contact-address" name="mailing-address" placeholder="Mailing address" required></textarea>
 
@@ -212,9 +220,37 @@
             bookDetailsEl.scrollIntoView({ block: 'end',  behavior: 'smooth' });
         }
 
+        // show the appropriate book type instructions
+        var kindleOnlySelectorEl = document.getElementById('form-kindle-only');
+        var paperOnlySelectorEl = document.getElementById('form-paper-only');
+        var kindleAndPaperSelectorEl = document.getElementById('form-choose-type');
+        var emailField = document.getElementById('contact-email');
         var addressField = document.getElementById('contact-address');
-        addressField.classList.remove('hide');
-        addressField.required = true;
+
+        kindleOnlySelectorEl.classList.add('hide');
+        paperOnlySelectorEl.classList.add('hide');
+        kindleAndPaperSelectorEl.classList.add('hide');
+        // Available in both kindle and paper
+        if (book.versions.indexOf('kindle') !== -1 && book.versions.indexOf('paper') !== -1) {
+            kindleAndPaperSelectorEl.classList.remove('hide');
+            selectBookType(bookType);
+        }
+        // kindle only
+        else if (book.versions.indexOf('kindle') !== -1) {
+            kindleOnlySelectorEl.classList.remove('hide');
+            emailField.classList.remove('hide');
+            emailField.required = true;
+            addressField.classList.add('hide');
+            addressField.required = false;
+        }
+        // paper only
+        else  {
+            paperOnlySelectorEl.classList.remove('hide');
+            emailField.classList.add('hide');
+            emailField.required = false;
+            addressField.classList.remove('hide');
+            addressField.required = true;
+        }
 
         // Show the contact form.
         document.forms.contactInfo.style.display = 'block';
