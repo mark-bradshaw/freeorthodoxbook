@@ -126,6 +126,13 @@
                     image: 'thirsting-for-god.jpg',
                     blurb: 'Beginning in the street ministry days of the Jesus Movement, Matthew Gallatin devoted more than 20 years to evangelical Christian ministry. He was a singer/songwriter, worship leader, youth leader, and Calvary Chapel pastor. Nevertheless, he eventually accepted a painful reality: no matter how hard he tried, he was never able to experience the God whom he longed to know. In encountering Orthodox Christianity, he finally found the fullness of the Faith. In Thirsting for God, philosophy professor Gallatin expresses many of the struggles that a Protestant will encounter in coming face to face with Orthodoxy: such things as Protestant relativism, rationalism versus the Orthodox sacramental path to God, and the unity of Scripture and Tradition. He also discusses praying with icons, praying formal prayers, and many other Orthodox traditions.An outstanding book that will help Orthodox readers more deeply appreciate their faith and will give Protestant readers a more thorough understanding of the Church.',
                     versions: ['kindle', 'paper']
+                },
+                'ask-for-ancient-paths': {
+                    title: 'Ask for the Ancient Paths',
+                    author: 'James Guirguis',
+                    image: 'ask-for-ancient-paths.jpg',
+                    blurb: 'At a time when so many disaffected Christians are trying to recreate the Church from scratch, Fr. James offers a clear and accessible apology for simply returning to what Christ\'s Church was always meant to be.  This easy read will help you understand where modern Christianity has gone wrong, and how to get back on the ancient path.',
+                    versions: ['kindle', 'paper']
                 }
     };
     var bookSet = 'annunciationDecaturIL';
@@ -133,7 +140,7 @@
         'annunciationDecaturIL': {
             email: 'freeorthodoxbook@gmail.com',
             area: 'Decatur, IL',
-            books: ['the-orthodox-church', 'welcome-to-the-orthodox-church', 'an-introduction-to-god', 'thirsting-for-god']
+            books: ['ask-for-ancient-paths', 'welcome-to-the-orthodox-church', 'the-orthodox-church', 'thirsting-for-god']
         }
     };
 
@@ -249,10 +256,7 @@
         });
         var valid = document.forms.contactInfo.checkValidity();
 
-        console.log('valid', valid);
         if (valid && localStorage) {
-            console.log('setting');
-            console.log(document.forms.contactInfo.book.value)
             localStorage.setItem('chosen-book', document.forms.contactInfo.book.value);
         }
         return false;
